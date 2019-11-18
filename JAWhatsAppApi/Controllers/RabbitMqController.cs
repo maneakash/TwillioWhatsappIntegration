@@ -7,6 +7,7 @@ using JAWhatsAppApi.Common;
 using JAWhatsAppApi.Models;
 using JAWhatsAppApi.RabbitMq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace JAWhatsAppApi.Controllers
 {
@@ -31,10 +32,10 @@ namespace JAWhatsAppApi.Controllers
 
         [HttpPost]
         [Route("SendMessageToRabbitQueue")]
-         public ActionResult SendMessageToRabbitQueue(SendSmsInput sendSmsInput)
+        public ActionResult SendMessageToRabbitQueue(SendSmsInput sendSmsInput)
         {
-            _sender.sendSms(_configuration);
-            return null;
+            var response = _sender.sendSms(_configuration.Value);
+            return Content(response);
         }
 
 

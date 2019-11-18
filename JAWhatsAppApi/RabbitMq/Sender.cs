@@ -12,9 +12,9 @@ namespace JAWhatsAppApi.RabbitMq
 {
     public class Sender
     {
-        public void sendSms(RMQConfig configuration)
+        public string sendSms(RMQConfig configuration)
         {
-            var factory = new ConnectionFactory() { HostName = configuration.HostName };
+            var factory = new ConnectionFactory() { HostName = configuration.HostName, Password = configuration.Password, UserName = configuration.UserName };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
@@ -35,13 +35,9 @@ namespace JAWhatsAppApi.RabbitMq
                                      routingKey: "hello",
                                      basicProperties: null,
                                      body: body);
-                Console.WriteLine(" [x] Sent {0}", message);
+
+                return message;
             }
-
-
-
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
         }
     }
 }

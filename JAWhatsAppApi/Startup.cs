@@ -30,6 +30,7 @@ namespace CoreWebApp
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<TwilloConfig>(Configuration.GetSection("TwilloConfig"));
+            services.Configure<RMQConfig>(Configuration.GetSection("RMQConfig"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +47,7 @@ namespace CoreWebApp
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
 
             new ConfigurationBuilder()
