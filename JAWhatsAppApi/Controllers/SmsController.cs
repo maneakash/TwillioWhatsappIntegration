@@ -41,18 +41,8 @@ namespace CoreWebApp.Controllers
         [Route("SendSms")]
         public ActionResult SendSms(SendSmsInput sendSmsInput)
         {
-            var accountSid = _configuration.Value.AccountSid;
-            var authToken = _configuration.Value.AuthToken;
-            var fromNumber = _configuration.Value.FromNumber;
-
-            TwilioClient.Init(accountSid, authToken);
-
-            var message = MessageResource.Create(
-                body: sendSmsInput.MessageBody,
-                from: new PhoneNumber(WhatsAppConstants.WHATSAPPPREFIX + fromNumber),
-                // statusCallback: new Uri("https://localhost:44308/api/Sms/ReceiveSendSmsResponse"),
-                to: new PhoneNumber(WhatsAppConstants.WHATSAPPPREFIX + sendSmsInput.ToNumber)
-            );
+            SendWhatsAppMessage sendWhatsApp = new SendWhatsAppMessage();
+            var message = sendWhatsApp.SendMessage(_configuration.Value, sendSmsInput);
             return Content("Sid : " + message.AccountSid + " Body : " + message.Body);
 
         }

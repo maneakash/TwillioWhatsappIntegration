@@ -32,9 +32,9 @@ namespace JAWhatsAppApi.Controllers
 
         [HttpPost]
         [Route("SendMessageToRabbitQueue")]
-        public ActionResult SendMessageToRabbitQueue(SendSmsInput sendSmsInput)
+        public ActionResult SendMessageToRabbitQueue(RMQMessageBody messageBody)
         {
-            var response = _sender.sendSms(_configuration.Value);
+            var response = _sender.sendSms(_configuration.Value, messageBody);
             return Content(response);
         }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using JAWhatsAppApi.Models;
+using JAWhatsAppApi.RabbitMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,7 @@ namespace CoreWebApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<TwilloConfig>(Configuration.GetSection("TwilloConfig"));
             services.Configure<RMQConfig>(Configuration.GetSection("RMQConfig"));
+            services.AddHostedService<ConsumeRabbitMQHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
