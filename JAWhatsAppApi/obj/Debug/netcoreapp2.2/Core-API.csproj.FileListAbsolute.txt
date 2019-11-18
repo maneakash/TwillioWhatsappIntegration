@@ -1,0 +1,14 @@
+C:\Projects\WhatsappIntegration\CoreWebApp\bin\Debug\netcoreapp2.2\Core-API.deps.json
+C:\Projects\WhatsappIntegration\CoreWebApp\bin\Debug\netcoreapp2.2\Core-API.runtimeconfig.json
+C:\Projects\WhatsappIntegration\CoreWebApp\bin\Debug\netcoreapp2.2\Core-API.runtimeconfig.dev.json
+C:\Projects\WhatsappIntegration\CoreWebApp\bin\Debug\netcoreapp2.2\Core-API.dll
+C:\Projects\WhatsappIntegration\CoreWebApp\bin\Debug\netcoreapp2.2\Core-API.pdb
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.csprojAssemblyReference.cache
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.csproj.CoreCompileInputs.cache
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.RazorAssemblyInfo.cache
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.RazorAssemblyInfo.cs
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.AssemblyInfoInputs.cache
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.AssemblyInfo.cs
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.RazorTargetAssemblyInfo.cache
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.dll
+C:\Projects\WhatsappIntegration\CoreWebApp\obj\Debug\netcoreapp2.2\Core-API.pdb
