@@ -41,7 +41,7 @@ namespace CoreWebApp
                     Title = "WhatsApp API",
                     Version = "v1"
                 });
-            });
+            }); 
 
             services.AddHostedService<ConsumeRabbitMQHostedService>();
 
