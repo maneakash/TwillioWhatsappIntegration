@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CoreWebApp
 {
@@ -31,6 +33,14 @@ namespace CoreWebApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<TwilloConfig>(Configuration.GetSection("TwilloConfig"));
             services.Configure<RMQConfig>(Configuration.GetSection("RMQConfig"));
+            services.AddSwaggerGen(setupAction =>
+            {
+                setupAction.SwaggerDoc("v1", new Info
+                {
+                    Title = "WhatsApp API",
+                    Version = "v1"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +59,12 @@ namespace CoreWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();
+            app.UseSwagger(); // middleware for swagger
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Whatsapp API");
+                options.RoutePrefix = "";
+            });
 
             new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)

@@ -30,6 +30,7 @@ namespace CoreWebApp.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet]
         public string Index()
         {
             return "Whatsapp api running";

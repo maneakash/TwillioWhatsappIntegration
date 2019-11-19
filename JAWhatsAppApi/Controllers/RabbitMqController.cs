@@ -25,6 +25,7 @@ namespace JAWhatsAppApi.Controllers
             _sender = new Sender();
         }
 
+        [HttpGet]
         public string Index()
         {
             return "RabitMQ is  running";
