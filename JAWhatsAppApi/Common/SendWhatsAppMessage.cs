@@ -16,7 +16,7 @@ namespace JAWhatsAppApi.Common
             var accountSid = twilloConfig.AccountSid;
             var authToken = twilloConfig.AuthToken;
             var fromNumber = twilloConfig.FromNumber;
-            var toNumber ="919036478920";
+            var toNumber = twilloConfig.ToNumber == null ? "919036478920" : twilloConfig.ToNumber;
 
             TwilioClient.Init(accountSid, authToken);
 
@@ -24,7 +24,7 @@ namespace JAWhatsAppApi.Common
                 body: sendSmsInput.MessageBody,
                 from: new PhoneNumber(WhatsAppConstants.WHATSAPPPREFIX + fromNumber),
                 // statusCallback: new Uri("https://localhost:44308/api/Sms/ReceiveSendSmsResponse"),
-                to: new PhoneNumber(WhatsAppConstants.WHATSAPPPREFIX +  toNumber)
+                to: new PhoneNumber(WhatsAppConstants.WHATSAPPPREFIX + toNumber)
             );
 
             return message;

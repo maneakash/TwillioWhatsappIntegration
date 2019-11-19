@@ -8,12 +8,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="RabbitMQ.Client" Version="5.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.1" />
     <PackageReference Include="Twilio" Version="5.35.1" />
     <PackageReference Include="Twilio.AspNet.Core" Version="5.33.1" />
     <PackageReference Include="TwilioSharpMVC" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ExpertActiveCenter.html" />
   </ItemGroup>
 
 </Project>

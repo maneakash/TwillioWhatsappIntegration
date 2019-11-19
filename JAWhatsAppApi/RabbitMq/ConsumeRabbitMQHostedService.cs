@@ -31,7 +31,9 @@ namespace JAWhatsAppApi.RabbitMq
 
         private void InitRabbitMQ()
         {
-            var factory = new ConnectionFactory() { HostName = _configuration.Value.HostName, Password = _configuration.Value.Password, UserName = _configuration.Value.UserName };
+            //var factory = new ConnectionFactory() { HostName = _configuration.Value.HostName, Password = _configuration.Value.Password, UserName = _configuration.Value.UserName };
+            var factory = new ConnectionFactory();
+            factory.Uri = new Uri(_configuration.Value.HostName.Replace("amqp://", "amqps://"));
 
             // create connection  
             _connection = factory.CreateConnection();
@@ -39,9 +41,7 @@ namespace JAWhatsAppApi.RabbitMq
             // create channel  
             _channel = _connection.CreateModel();
 
-           // _channel.ExchangeDeclare("demo.exchange", ExchangeType.Topic);
-            _channel.QueueDeclare("demo.queue", false, false, false, null);
-            //_channel.QueueBind("demo.queue", "demo.exchange", "demo.queue.*", null);
+            _channel.QueueDeclare("demoqueue", true, false, false, null);
             _channel.BasicQos(0, 1, false);
 
             _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;

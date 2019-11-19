@@ -48,7 +48,7 @@ namespace CoreWebApp.Controllers
 
         }
 
-        [HttpPost]
+      /*  [HttpPost]
         [Route("ReceiveSendSmsResponse")]
         public ActionResult ReceiveSendSmsResponse(SmsStatusCallbackRequest incomingMessage)
         {
@@ -59,14 +59,14 @@ namespace CoreWebApp.Controllers
 
             return SendSms(sendSmsInput);
 
-        }
+        }*/
 
         [HttpPost]
         [Route("ReceiveSms")]
         public TwiMLResult ReceiveSms(SmsRequest incomingMessage)
         {
             var messagingResponse = new MessagingResponse();
-            messagingResponse.Message("Response: Go to hell! : " + incomingMessage.Body);
+            messagingResponse.Message("Response: Hi how may I help you? : " + incomingMessage.Body);
 
             return TwiML(messagingResponse);
         }
