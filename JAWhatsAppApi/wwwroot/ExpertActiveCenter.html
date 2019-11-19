@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JustAnswer Request Center</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        /* Style inputs, select elements and textareas */
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        /* Style the label to display next to the inputs */
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        /* Style the submit button */
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        /* Style the container */
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        /* Floating column for labels: 25% width */
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        /* Floating column for inputs: 75% width */
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+            <h1 align="center">JustAnswer Request Center</h1>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="response">Expert Response</label>
+            </div>
+            <div class="col-75">
+                <textarea id="response" name="response" style="height: 200px"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit" id="btnSubmit" onclick="return SubmitBtnClicked()">
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        function SubmitBtnClicked() {
+            var text = document.getElementById("response").value;
+            var dataString = {
+                ToNumber: "919561172408",
+                MessageBody: text
+            }
+            $.ajax({
+                url: "http://localhost:57091/api/RabbitMq/SendMessageToRabbitQueue",
+                method: "POST",
+                data: JSON.stringify(dataString),
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (result, status, jqXHR) {
+                    alert("Pushed Msg to RMQ success!");
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                }
+            });
+            return false;
+
+        }
+    </script>
+</body>
+</html>
