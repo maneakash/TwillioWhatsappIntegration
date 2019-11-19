@@ -12,29 +12,19 @@ namespace JAWhatsAppApi.RabbitMq
 {
     public class Sender
     {
-        public string sendSms(RMQConfig configuration)
+        public string sendSms(RMQConfig configuration,RMQMessageBody messageBody)
         {
             var factory = new ConnectionFactory() { HostName = configuration.HostName, Password = configuration.Password, UserName = configuration.UserName };
             using (var connection = factory.CreateConnection())
-            using (var channel = connection.CreateModel())
+            using (var model = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "hello",
-                                     durable: false,
-                                     exclusive: false,
-                                     autoDelete: false,
-                                     arguments: null);
+                string message = messageBody.MessageBody;
+                var properties = model.CreateBasicProperties();
 
+                properties.Persistent = false;
 
-
-                string message = "Testing RMQ ";
-                var body = Encoding.UTF8.GetBytes(message);
-
-
-
-                channel.BasicPublish(exchange: "",
-                                     routingKey: "hello",
-                                     basicProperties: null,
-                                     body: body);
+                byte[] messagebuffer = Encoding.Default.GetBytes(message);
+                model.BasicPublish("demoExchange", "directexchange_key", properties, messagebuffer);
 
                 return message;
             }

@@ -97,7 +97,7 @@
                 MessageBody: text
             }
             $.ajax({
-                url: "https://localhost:44308/api/Sms/SendSms",
+                url: "http://localhost:57091/api/RabbitMq/SendMessageToRabbitQueue",
                 method: "POST",
                 data: JSON.stringify(dataString),
                 dataType: 'json',
