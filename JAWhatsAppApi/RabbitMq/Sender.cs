@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using JAWhatsAppApi.Models;
 using JAWhatsAppApi.RabbitMq;
+using Newtonsoft.Json;
 
 namespace JAWhatsAppApi.RabbitMq
 {
     public class Sender
     {
-        public string sendSms(RMQConfig configuration, RMQMessageBody messageBody)
+        public string sendSms(RMQConfig configuration, RMQMessage messageBody)
         {
             //var factory = new ConnectionFactory() { HostName = configuration.HostName, Password = configuration.Password, UserName = configuration.UserName };
 
@@ -21,7 +22,8 @@ namespace JAWhatsAppApi.RabbitMq
             using (var connection = factory.CreateConnection())
             using (var model = connection.CreateModel())
             {
-                string message = messageBody.MessageBody;
+
+                string message = JsonConvert.SerializeObject(messageBody);
                 var properties = model.CreateBasicProperties();
 
                 properties.Persistent = false;

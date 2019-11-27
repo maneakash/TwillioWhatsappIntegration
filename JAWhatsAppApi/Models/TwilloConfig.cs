@@ -10,6 +10,7 @@ namespace JAWhatsAppApi.Models
         public string AccountSid { get; set; }
         public string AuthToken { get; set; }
         public string FromNumber { get; set; }
-        public string ToNumber { get; set; }
+        public string ExpertNumber { get; set; }
+        public string CustomerNumber { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace JAWhatsAppApi.Models
     {
         public string ToNumber { get; set; }
         public string MessageBody { get; set; }
+        public bool isExpertReply { get; set; }
     }
 }

@@ -94,7 +94,8 @@
             var text = document.getElementById("response").value;
             var dataString = {
                 ToNumber: "919561172408",
-                MessageBody: text
+                Message: text,
+                isSendToExpert : false
             }
             $.ajax({
                 url: "api/RabbitMq/SendMessageToRabbitQueue",

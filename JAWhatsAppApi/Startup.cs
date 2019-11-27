@@ -34,14 +34,14 @@ namespace CoreWebApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<TwilloConfig>(Configuration.GetSection("TwilloConfig"));
             services.Configure<RMQConfig>(Configuration.GetSection("RMQConfig"));
-            services.AddSwaggerGen(setupAction =>
+           /* services.AddSwaggerGen(setupAction =>
             {
                 setupAction.SwaggerDoc("v1", new Info
                 {
                     Title = "WhatsApp API",
                     Version = "v1"
                 });
-            }); 
+            }); */
 
             services.AddHostedService<ConsumeRabbitMQHostedService>();
 
@@ -63,12 +63,12 @@ namespace CoreWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();
-            app.UseSwagger(); // middleware for swagger
+           /* app.UseSwagger(); // middleware for swagger
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Whatsapp API");
                 options.RoutePrefix = "";
-            });
+            });*/
 
             new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)

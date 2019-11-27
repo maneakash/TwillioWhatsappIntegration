@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace JAWhatsAppApi.RabbitMq
 {
@@ -73,8 +74,24 @@ namespace JAWhatsAppApi.RabbitMq
 
         private void HandleMessage(string content)
         {
+            RMQMessage msgContent = JsonConvert.DeserializeObject<RMQMessage>(content);
+            string toNumber;
+            if (msgContent.isSendToExpert)
+            {
+                content = "A customer has asked you a question with following details : " + msgContent.Message +
+                          " Please click here https://bit.ly/2CWbJta to answer the question!";
+                toNumber = _twilloConfig.Value.ExpertNumber;
+
+            }
+            else
+            {
+                content = "An expert on JustAnswer responded to your question with following details : " + msgContent.Message +
+                          " Please click here https://bit.ly/2CWbJta to continue chat!";
+                toNumber = _twilloConfig.Value.CustomerNumber;
+            }
+
             SendWhatsAppMessage sendWhatsApp = new SendWhatsAppMessage();
-            sendWhatsApp.SendMessage(_twilloConfig.Value, new SendSmsInput() { MessageBody= content , ToNumber =_twilloConfig.Value.ToNumber});
+            sendWhatsApp.SendMessage(_twilloConfig.Value, new SendSmsInput() { MessageBody = content, ToNumber = toNumber });
             _logger.LogInformation($"consumer received {content}");
         }
 
